@@ -5,10 +5,8 @@
 #![allow(non_camel_case_types)]
 
 extern crate libc;
-extern crate va_list as va_list_crate;
 
 use libc::{FILE, off_t, ssize_t, size_t, fpos_t};
-use va_list_crate::VaList as va_list;
 
 pub type __int8_t = ::libc::c_char;
 pub type __uint8_t = ::libc::c_uchar;
@@ -436,12 +434,6 @@ extern "C" {
     pub fn tmpfile() -> *mut FILE;
     pub fn tmpnam(arg1: *mut ::libc::c_char) -> *mut ::libc::c_char;
     pub fn ungetc(arg1: ::libc::c_int, arg2: *mut FILE) -> ::libc::c_int;
-    pub fn vfprintf(arg1: *mut FILE, arg2: *const ::libc::c_char,
-                    arg3: va_list) -> ::libc::c_int;
-    pub fn vprintf(arg1: *const ::libc::c_char, arg2: va_list)
-     -> ::libc::c_int;
-    pub fn vsprintf(arg1: *mut ::libc::c_char, arg2: *const ::libc::c_char,
-                    arg3: va_list) -> ::libc::c_int;
     pub fn ctermid(arg1: *mut ::libc::c_char) -> *mut ::libc::c_char;
     pub fn fdopen(arg1: ::libc::c_int, arg2: *const ::libc::c_char)
      -> *mut FILE;
@@ -450,8 +442,6 @@ extern "C" {
     pub fn popen(arg1: *const ::libc::c_char, arg2: *const ::libc::c_char)
      -> *mut FILE;
     pub fn __srget(arg1: *mut FILE) -> ::libc::c_int;
-    pub fn __svfscanf(arg1: *mut FILE, arg2: *const ::libc::c_char,
-                      arg3: va_list) -> ::libc::c_int;
     pub fn __swbuf(arg1: ::libc::c_int, arg2: *mut FILE) -> ::libc::c_int;
     pub fn __sputc(_c: ::libc::c_int, _p: *mut FILE) -> ::libc::c_int;
     pub fn flockfile(arg1: *mut FILE) -> ();
@@ -471,19 +461,8 @@ extern "C" {
     pub fn ftello(arg1: *mut FILE) -> off_t;
     pub fn snprintf(arg1: *mut ::libc::c_char, arg2: size_t,
                     arg3: *const ::libc::c_char, ...) -> ::libc::c_int;
-    pub fn vfscanf(arg1: *mut FILE, arg2: *const ::libc::c_char,
-                   arg3: va_list) -> ::libc::c_int;
-    pub fn vscanf(arg1: *const ::libc::c_char, arg2: va_list)
-     -> ::libc::c_int;
-    pub fn vsnprintf(arg1: *mut ::libc::c_char, arg2: size_t,
-                     arg3: *const ::libc::c_char, arg4: va_list)
-     -> ::libc::c_int;
-    pub fn vsscanf(arg1: *const ::libc::c_char, arg2: *const ::libc::c_char,
-                   arg3: va_list) -> ::libc::c_int;
     pub fn dprintf(arg1: ::libc::c_int, arg2: *const ::libc::c_char, ...)
      -> ::libc::c_int;
-    pub fn vdprintf(arg1: ::libc::c_int, arg2: *const ::libc::c_char,
-                    arg3: va_list) -> ::libc::c_int;
     pub fn getdelim(arg1: *mut *mut ::libc::c_char, arg2: *mut size_t,
                     arg3: ::libc::c_int, arg4: *mut FILE) -> ssize_t;
     pub fn getline(arg1: *mut *mut ::libc::c_char, arg2: *mut size_t,
@@ -498,9 +477,6 @@ extern "C" {
     pub fn setbuffer(arg1: *mut FILE, arg2: *mut ::libc::c_char,
                      arg3: ::libc::c_int) -> ();
     pub fn setlinebuf(arg1: *mut FILE) -> ::libc::c_int;
-    pub fn vasprintf(arg1: *mut *mut ::libc::c_char,
-                     arg2: *const ::libc::c_char, arg3: va_list)
-     -> ::libc::c_int;
     pub fn zopen(arg1: *const ::libc::c_char, arg2: *const ::libc::c_char,
                  arg3: ::libc::c_int) -> *mut FILE;
     pub fn funopen(arg1: *const ::libc::c_void,
@@ -538,13 +514,6 @@ extern "C" {
     pub fn __snprintf_chk(arg1: *mut ::libc::c_char, arg2: size_t,
                           arg3: ::libc::c_int, arg4: size_t,
                           arg5: *const ::libc::c_char, ...) -> ::libc::c_int;
-    pub fn __vsprintf_chk(arg1: *mut ::libc::c_char, arg2: ::libc::c_int,
-                          arg3: size_t, arg4: *const ::libc::c_char,
-                          arg5: va_list) -> ::libc::c_int;
-    pub fn __vsnprintf_chk(arg1: *mut ::libc::c_char, arg2: size_t,
-                           arg3: ::libc::c_int, arg4: size_t,
-                           arg5: *const ::libc::c_char, arg6: va_list)
-     -> ::libc::c_int;
     pub fn Z3_global_param_set(param_id: Z3_string, param_value: Z3_string)
      -> ();
     pub fn Z3_global_param_reset_all() -> ();
